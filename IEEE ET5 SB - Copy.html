@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Official website of the IEEE ET5 Student Branch at New Cairo Academy, Fifth Settlement. Discover our events, educational, and technical resources.">
+  <meta property="og:title" content="IEEE ET5 Student Branch - Institute of Engineering and Technology, Fifth Settlement">
+  <meta property="og:description" content="Official website of the IEEE ET5 Student Branch at the Institute of Engineering and Technology, Fifth Settlement. Discover our events, educational, and technical resources.">
+  <meta property="og:image" content="https://www.ieee.org/content/dam/ieee-web/standards/images/logo.svg ">
+  <meta property="og:url" content="https://yourwebsite.com ">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>IEEE ET5 Student Branch</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
+
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Root variables for consistent theming */
+    :root {
+      --primary: #00629B; /* IEEE Blue */
+      --secondary: #FFD100; /* IEEE Gold */
+      --dark: #003865; /* Dark Blue */
+      --light: #E9F1F7; /* Light Grayish Blue */
+      --accent: #00A5E3; /* Lighter Blue */
+      --success: #28a745; /* Green for success messages */
+      --error: #dc3545; /* Red for error messages */
+    }
+
+    /* Universal box-sizing and font family */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif; /* Keeping Tajawal for now, but can be changed to an English font */
+    }
+
+    body {
+      line-height: 1.6;
+      color: #333;
+      background-color: var(--light); /* Base background color */
+      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      /* Subtle background pattern for the entire page (parallax effect) */
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(0, 98, 155, 0.05) 5%, transparent 5%), /* Increased opacity */
+        radial-gradient(circle at 90% 80%, rgba(255, 209, 0, 0.05) 5%, transparent 5%); /* Increased opacity */
+      background-size: 50px 50px, 50px 50px; /* Size of the repeating dots */
+      background-attachment: fixed; /* Makes background fixed relative to viewport for parallax */
+    }
+
+    /* Basic Typography */
+    h1, h2, h3 {
+      font-weight: bold;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Lazy loading image effect */
+    img[loading="lazy"] {
+      opacity: 0.8;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    img[loading="lazy"]:loaded {
+      opacity: 1;
+    }
+
+    /* Header Styling */
+    header#header {
+      background: linear-gradient(120deg, var(--primary), var(--accent));
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, border-bottom 0.3s ease; /* Smooth transition for background and border */
+    }
+
+    /* Header background when scrolled */
+    header#header.scrolled {
+      background-color: var(--dark); /* Solid dark blue when scrolled */
+      border-bottom: 3px solid var(--secondary); /* Add a border on scroll */
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      animation: fadeInDown 1s ease;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px; /* Space between logo and text for LTR */
+      border-radius: 50%; /* Make logo round */
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle shadow for logo */
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+      padding-bottom: 5px; /* Space for underline effect */
+    }
+
+    /* Navigation underline effect */
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0; /* For LTR */
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+      right: 0; /* For LTR */
+    }
+
+    nav ul li a:hover {
+      color: var(--secondary);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem; /* Slightly larger for touch */
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mobile navigation */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        background: var(--primary);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+        text-align: left; /* Align to left for LTR */
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+        padding: 0 1rem;
+      }
+    }
+
+    main {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+      position: relative; /* For z-index stacking */
+      z-index: 2; /* Ensure main content is above body background */
+      background-color: transparent; /* Allow body background to show through */
+    }
+
+    section {
+      padding: 4rem 2rem;
+      direction: ltr; /* Ensure LTR for content */
+      text-align: center; /* Center section content */
+      position: relative; /* For z-index stacking */
+      z-index: 2; /* Ensure section content is above body background */
+      background-color: white; /* Solid background to cover body pattern */
+      border-radius: 10px; /* Rounded corners for sections */
+      margin-bottom: 2rem; /* Space between sections */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
+    }
+
+    /* Hero Section Specific Styles and Animations */
+    #home {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      min-height: 80vh; /* Make hero section taller */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative; /* Crucial for pseudo-elements */
+      overflow: hidden; /* Hide overflow from animations */
+      z-index: 2; /* Ensure content is above body background */
+      border-radius: 10px; /* Rounded corners for hero */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow for hero */
+    }
+
+    #home .section-title {
+      color: white; /* White title for hero section */
+      animation: fadeInUp 1s ease-out forwards; /* Animation for title */
+      animation-delay: 0.2s;
+    }
+
+    #home p {
+      color: rgba(255, 255, 255, 0.9);
+      animation: fadeInUp 1s ease-out forwards; /* Animation for paragraph */
+      animation-delay: 0.4s;
+    }
+
+    #home .cta-button {
+      animation: fadeInUp 1s ease-out forwards; /* Animation for button */
+      animation-delay: 0.6s;
+    }
+
+    /* Background animations for hero section */
+    #home::before,
+    #home::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* Below content */
+      opacity: 0.15; /* Subtle */
+    }
+
+    #home::before {
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 10%, transparent 70%);
+      animation: rotateBackground 20s linear infinite;
+      transform-origin: center center;
+    }
+
+    #home::after {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      animation: panBackground 30s linear infinite;
+      background-size: 40px 40px; /* Size of the repeating pattern */
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px; /* Space for underline */
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: 0; /* Position at the bottom of the title */
+      left: 25%;
+      border-radius: 50px;
+    }
+
+    /* General card styling */
+    .about-content,
+    .membership-steps,
+    .events-container,
+    .resources-grid,
+    .contact-info-grid,
+    .board-members-grid { /* Added board-members-grid */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .about-card,
+    .step,
+    .event-card,
+    .resource-card,
+    .contact-method,
+    .member-card { /* Added member-card */
+      flex: 1 1 280px;
+      max-width: 350px;
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: left; /* Align to left for LTR */
+      position: relative;
+      overflow: hidden;
+      opacity: 0; /* Initial state for animate-on-scroll */
+      transform: translateY(30px) scale(0.95); /* Initial state for animate-on-scroll */
+    }
+
+    /* Staggered animation for cards */
+    .about-content .about-card:nth-child(1),
+    .membership-steps .step:nth-child(1),
+    .events-container .event-card:nth-child(1),
+    .resources-grid .resource-card:nth-child(1),
+    .board-members-grid .member-card:nth-child(1) { transition-delay: 0s; } /* Added member-card */
+    .about-content .about-card:nth-child(2),
+    .membership-steps .step:nth-child(2),
+    .events-container .event-card:nth-child(2),
+    .resources-grid .resource-card:nth-child(2),
+    .board-members-grid .member-card:nth-child(2) { transition-delay: 0.1s; } /* Added member-card */
+    .about-content .about-card:nth-child(3),
+    .membership-steps .step:nth-child(3),
+    .events-container .event-card:nth-child(3),
+    .resources-grid .resource-card:nth-child(3),
+    .board-members-grid .member-card:nth-child(3) { transition-delay: 0.2s; } /* Added member-card */
+    .about-content .about-card:nth-child(4),
+    .membership-steps .step:nth-child(4),
+    .events-container .event-card:nth-child(4),
+    .resources-grid .resource-card:nth-child(4),
+    .board-members-grid .member-card:nth-child(4) { transition-delay: 0.3s; } /* Added member-card */
+
+    .about-card.animated,
+    .step.animated,
+    .event-card.animated,
+    .resource-card.animated,
+    .contact-method.animated,
+    .member-card.animated { /* Added member-card */
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .about-card:hover,
+    .step:hover,
+    .event-card:hover,
+    .resource-card:hover,
+    .member-card:hover { /* Added member-card */
+      transform: translateY(-8px) scale(1.02); /* More pronounced hover effect */
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Membership Steps */
+    .step-number {
+      position: absolute;
+      top: 15px;
+      right: 15px; /* For LTR */
+      width: 40px;
+      height: 40px;
+      background: var(--secondary);
+      color: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .step h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      padding-left: 50px; /* Adjust padding for LTR */
+    }
+
+    /* Event Cards */
+    .event-card {
+      padding: 0;
+      text-align: left; /* Align to left for LTR */
+    }
+
+    .event-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .event-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .event-card:hover .event-image img {
+      transform: scale(1.1);
+    }
+
+    .event-details {
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .event-date {
+      position: absolute;
+      top: -20px;
+      right: 15px; /* For LTR */
+      background: var(--primary);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-details h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    .event-details p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    /* Resource Cards */
+    .resource-card {
+      border-left: 4px solid var(--primary); /* For LTR */
+      border-right: none; /* Override RTL */
+      text-align: left; /* Align to left for LTR */
+    }
+
+    .resource-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .resource-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--accent);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .resource-card a:hover {
+      color: var(--dark);
+      transform: translateX(8px); /* More pronounced slide effect for LTR */
+    }
+
+    /* Board Members Section Styling */
+    .member-card {
+      text-align: center; /* Center content within member cards */
+      padding: 1.5rem; /* Adjust padding for member cards */
+    }
+
+    .member-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 4px solid var(--primary); /* Border around member image */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .member-card:hover img {
+      transform: scale(1.05); /* Slightly enlarge image on hover */
+    }
+
+    .member-card h3 {
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    .member-role {
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .member-description {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .member-card .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .member-card .social-link:hover {
+      background: var(--secondary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+
+    /* Call to Action Buttons */
+    .cta-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Added transform and box-shadow to transition */
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      position: relative; /* For pseudo-element hover effect */
+      overflow: hidden; /* Hide overflow for hover effect */
+      z-index: 1;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1); /* Light overlay */
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-out;
+      z-index: -1;
+    }
+
+    .cta-button:hover::before {
+      transform: translateX(0);
+    }
+
+    .cta-button:hover {
+      background: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    }
+
+    .cta-button.secondary {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    .cta-button.secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Contact Section */
+    #contact-us .section-description {
+      text-align: center;
+      max-width: 800px;
+      margin: auto auto 2rem auto;
+    }
+
+    .contact-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .contact-method {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover */
+    }
+
+    .contact-method i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      transition: color 0.3s ease, transform 0.3s ease; /* Add transition for icon hover */
+    }
+
+    .contact-method:hover i {
+      color: var(--secondary); /* Change icon color on hover */
+      transform: scale(1.1); /* Slightly enlarge icon on hover */
+    }
+
+    .contact-method h3 {
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .contact-form {
+      flex: 1 1 400px;
+      max-width: 500px;
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: left; /* Align to left for LTR */
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: var(--dark);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      direction: ltr; /* Ensure LTR for input fields */
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 98, 155, 0.2);
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-btn:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Google Map Styling */
+    .map-container {
+      flex: 1 1 400px;
+      max-width: 600px;
+      min-height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Footer Styling */
+    footer {
+      background: linear-gradient(135deg, var(--dark), var(--primary));
+      color: white;
+      padding: 3rem 0 1rem;
+      text-align: left; /* Align to left for LTR */
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      flex: 1 1 250px;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a,
+    .footer-section ul li {
+      color: white;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease, transform 0.2s ease; /* Added transform to transition */
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+      color: var(--dark);
+      transform: translateY(-5px) scale(1.1); /* Lift and scale on hover */
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Animations */
+    /* General animate-on-scroll (now with scale) */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slower and smoother */
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hero section specific animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes rotateBackground {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes panBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Custom Modal for Form Submission */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .close-button {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 15px; /* For LTR */
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .modal-content h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-content .cta-button {
+      width: auto;
+      padding: 0.6rem 1.5rem;
+    }
+
+    /* NoScript Warning */
+    noscript {
+      display: block;
+      background: #fee;
+      color: #a00;
+      text-align: center;
+      padding: 1rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo {
+        margin-bottom: 1rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin: 0 0.5rem 0.5rem;
+      }
+
+      .contact-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-form, .map-container {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-card, .step, .event-card, .resource-card, .contact-method, .member-card { /* Added member-card */
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-section {
+        min-width: unset;
+        width: 100%;
+      }
+
+      .footer-section h3 {
+        margin: 1rem auto 1rem;
+      }
+
+      .footer-section ul li, .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <noscript>
+    This website uses JavaScript. Please enable JavaScript to view all features of the site.
+  </noscript>
+
+  <header id="header">
+    <div class="header-container">
+      <div class="logo">
+        <img src="https://ieee.org.eg/wp-content/uploads/2022/05/logo-P-Mohamed-Adel-Hegazy-300x300.jpg " alt="IEEE ET5 Logo" loading="lazy">
+        <div class="logo-text">
+          <h1>IEEE ET5 SB</h1>
+          <span>IEEE Egyptian Students' Branch</span>
+        </div>
+      </div>
+      <nav id="navMenu">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#board-members">Board Team</a></li>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#career-path-suggester">Career Path</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+      </nav>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="animate-on-scroll">
+      <h2 class="section-title">Welcome to IEEE ET5 Student Branch</h2>
+      <p style="margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+        A student community under the patronage of the Institute of Electrical and Electronics Engineers (IEEE) International, we strive to empower the next generation of engineers.
+      </p>
+      <a href="#about" class="cta-button pulse">Learn More</a>
+    </section>
+
+    <section id="about" class="animate-on-scroll">
+      <h2 class="section-title">About the Branch</h2>
+      <p style="text-align:center; max-width: 800px; margin: auto;">
+        IEEE ET5 SB is a student branch affiliated with the global IEEE institute, aiming to support and develop the technical and professional skills of students through workshops, lectures, and interactive events. We believe in building a strong community that exchanges knowledge and experiences.
+      </p>
+      <div class="about-content">
+        <div class="about-card animate-on-scroll">
+          <h3>Our Vision</h3>
+          <p>To be leaders in empowering students with the knowledge and skills necessary for innovation in engineering and technology fields.</p>
+        </div>
+        <div class="about-card animate-on-scroll">
+          <h3>Our Mission</h3>
+          <p>Providing a stimulating learning environment, organizing high-quality events, and building a strong professional network for our students.</p>
+        </div>
+        <div class="about-card animate-on-scroll">
+          <h3>Our Values</h3>
+          <p>Innovation, collaboration, excellence, and social responsibility are at the core of everything we do.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="board-members" class="animate-on-scroll">
+        <h2 class="section-title">Board Team</h2>
+        <p style="text-align:center; margin-bottom: 2rem;">
+          Meet the members of our student branch board who lead our efforts towards excellence and innovation.
+        </p>
+        <div class="board-members-grid">
+            <div class="member-card animate-on-scroll">
+                <img src="https://placehold.co/150x150/00629B/FFFFFF?text=Abdelmaseh+Boles" alt="Abdelmaseh Boles Photo" loading="lazy">
+                <h3>Abdelmaseh Boles</h3>
+                <p class="member-role">Chair</p>
+                <p class="member-description">
+                    An inspiring and innovative leader who guides the branch towards achieving its ambitious goals.
+                </p>
+                <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="member-card animate-on-scroll">
+                <img src="https://placehold.co/150x150/00629B/FFFFFF?text=Dina+Rostom" alt="Dina Rostom Photo" loading="lazy">
+                <h3>Dina Rostom</h3>
+                <p class="member-role">Counselor</p>
+                <p class="member-description">
+                    Supports the vision and contributes effectively to the implementation of initiatives.
+                </p>
+                <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="member-card animate-on-scroll">
+                <img src="https://placehold.co/150x150/00629B/FFFFFF?text=Mohamed+Abd+all+nasser" alt="Mohamed Abd all nasser Photo" loading="lazy">
+                <h3>Mohamed Abd all nasser</h3>
+                <p class="member-role">Secretary</p>
+                <p class="member-description">
+                    Responsible for organizing meetings and documenting decisions.
+                </p>
+                <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="member-card animate-on-scroll">
+                <img src="https://placehold.co/150x150/00629B/FFFFFF?text=AbdElmoumen+Mansour" alt="AbdElmoumen Mansour Photo" loading="lazy">
+                <h3>AbdElmoumen Mansour</h3>
+                <p class="member-role">Treasurer</p>
+                <p class="member-description">
+                    Manages the branch's financial affairs efficiently and transparently.
+                </p>
+                <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+             <div class="member-card animate-on-scroll">
+                <img src="https://placehold.co/150x150/00629B/FFFFFF?text=Osama+Maher" alt="Osama Maher Photo" loading="lazy">
+                <h3>Osama Maher</h3>
+                <p class="member-role">Vice Chair</p>
+                <p class="member-description">
+                    Works to build and strengthen the branch's relationships with the external community.
+                </p>
+                <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+             <div class="member-card animate-on-scroll">
+                <img src="https://placehold.co/150x150/00629B/FFFFFF?text=Position+Vacant" alt="Webmaster Position Vacant" loading="lazy">
+                <h3>Position Vacant</h3>
+                <p class="member-role">Webmaster</p>
+                <p class="member-description">
+                    This position is currently vacant. We are looking for a dedicated individual to join our team.
+                </p>
+                <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="membership" class="animate-on-scroll">
+      <h2 class="section-title">Membership</h2>
+      <p style="text-align:center; max-width: 800px; margin: auto;">
+        Join the IEEE ET5 community and benefit from exclusive resources and events for IEEE members. Be part of a global network of engineers and scientists.
+      </p>
+      <div class="membership-steps">
+        <div class="step animate-on-scroll">
+          <div class="step-number">1</div>
+          <h3>Registration</h3>
+          <p>Register through the official IEEE website and choose ET5 as your student branch. A simple and direct process.</p>
+        </div>
+        <div class="step animate-on-scroll">
+          <div class="step-number">2</div>
+          <h3>Payment</h3>
+          <p>Complete the payment process through the website's electronic system. Secure and multiple payment options are available.</p>
+        </div>
+        <div class="step animate-on-scroll">
+          <div class="step-number">3</div>
+          <h3>Join</h3>
+          <p>Get ready to participate in activities and build a strong network! Start your journey with us today.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="animate-on-scroll">
+      <h2 class="section-title">Events</h2>
+      <p style="text-align:center; margin-bottom: 2rem;">Enjoy an unforgettable educational and interactive experience with our monthly events and specialized workshops.</p>
+      <div class="events-container">
+        <div class="event-card animate-on-scroll">
+          <div class="event-image">
+            <img src="https://picsum.photos/400/200?random=1 " alt="AI Workshop" loading="lazy">
+          </div>
+          <div class="event-details">
+            <div class="event-date">Oct 20</div>
+            <h3>AI Workshop</h3>
+            <p>Discover the fundamentals of Artificial Intelligence and its applied history in industry, with practical applications.</p>
+            <a href="#" class="cta-button secondary">Register Now</a>
+          </div>
+        </div>
+        <div class="event-card animate-on-scroll">
+          <div class="event-image">
+            <img src="https://picsum.photos/400/200?random=2 " alt="Programming Hackathon" loading="lazy">
+          </div>
+          <div class="event-details">
+            <div class="event-date">Nov 15</div>
+            <h3>Programming Hackathon</h3>
+            <p>A one-day challenge to solve real-world problems using modern technology, with valuable prizes for the top places.</p>
+            <a href="#" class="cta-button secondary">Register Now</a>
+          </div>
+        </div>
+        <div class="event-card animate-on-scroll">
+          <div class="event-image">
+            <img src="https://picsum.photos/400/200?random=3 " alt="Cybersecurity Seminar" loading="lazy">
+          </div>
+          <div class="event-details">
+            <div class="event-date">Dec 10</div>
+            <h3>Cybersecurity Seminar</h3>
+            <p>Learn about the latest cyber threats and how to protect your data and systems.</p>
+            <a href="#" class="cta-button secondary">Register Now</a>
+          </div>
+        </div>
+        <div class="event-card animate-on-scroll">
+          <div class="event-image">
+            <img src="https://picsum.photos/400/200?random=4 " alt="Field Trip" loading="lazy">
+          </div>
+          <div class="event-details">
+            <div class="event-date">Jan 05</div>
+            <h3>Field Trip</h3>
+            <p>A visit to a leading technology company to learn about the real work environment.</p>
+            <a href="#" class="cta-button secondary">Register Now</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 3rem;">
+        <a href="#" class="cta-button">View All Events</a>
+        <button id="generateEventIdeaBtn" class="cta-button secondary" style="margin-left: 1rem;">Suggest New Event Idea ✨</button> </div>
+      <div id="loadingIndicator" style="display:none; margin-top: 1rem; color: var(--primary); font-weight: bold;">
+        Generating idea... <i class="fas fa-spinner fa-spin"></i>
+      </div>
+      <div id="generatedEventIdea" style="margin-top: 1.5rem; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: left; display: none;">
+        </div>
+    </section>
+
+    <section id="resources" class="animate-on-scroll">
+      <h2 class="section-title">Educational Resources</h2>
+      <p style="text-align:center; margin-bottom: 2rem;">Benefit from the valuable educational resources we provide to support your academic and professional journey.</p>
+      <div class="resources-grid">
+        <div class="resource-card animate-on-scroll">
+          <h3>IEEE Xplore Digital Library</h3>
+          <p>Access thousands of research papers and scientific journals in various technical disciplines, an indispensable resource for researchers.</p>
+          <a href="https://ieeexplore.ieee.org/Xplore/home.jsp " target="_blank">Discover Now <i class="fas fa-external-link-alt"></i></a>
+        </div>
+        <div class="resource-card animate-on-scroll">
+          <h3>Advanced Training Courses</h3>
+          <p>The IEEE Learn platform provides specialized and certified courses in modern engineering and technology fields.</p>
+          <a href="https://learn.ieee.org/ " target="_blank">Start Learning <i class="fas fa-external-link-alt"></i></a>
+        </div>
+        <div class="resource-card animate-on-scroll">
+          <h3>Free Programming Tools</h3>
+          <p>Use powerful tools like MATLAB Onramp, Python, Git, and others to support your projects and develop your skills.</p>
+          <a href="#">Discover Tools <i class="fas fa-arrow-right"></i></a> </div>
+        <div class="resource-card animate-on-scroll">
+          <h3>Publications and Articles</h3>
+          <p>A collection of exclusive articles and publications for IEEE members, covering the latest developments in the industry.</p>
+          <a href="#">Read More <i class="fas fa-arrow-right"></i></a> </div>
+      </div>
+      <div style="margin-top: 3rem;">
+        <a href="#" class="cta-button">Browse All Resources</a>
+      </div>
+    </section>
+
+    <section id="career-path-suggester" class="animate-on-scroll">
+      <h2 class="section-title">Discover Your Career Path</h2>
+      <p style="text-align:center; margin-bottom: 2rem;">
+        Enter your interests or areas that pique your curiosity, and we will suggest potential career paths and relevant IEEE fields.
+      </p>
+      <div style="max-width: 600px; margin: auto; text-align: left;"> <div class="form-group">
+          <label for="interestsInput">My interests (e.g., Artificial Intelligence, Robotics, Renewable Energy):</label>
+          <textarea id="interestsInput" name="interests" rows="4" required placeholder="Type your interests here..."></textarea>
+        </div>
+        <button id="suggestCareerPathBtn" class="cta-button">Suggest Career Path ✨</button>
+        <div id="careerLoadingIndicator" style="display:none; margin-top: 1rem; color: var(--primary); font-weight: bold;">
+          Generating suggestions... <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <div id="generatedCareerPath" style="margin-top: 1.5rem; padding: 1.5rem; background: var(--light); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: left; display: none;">
+          </div>
+      </div>
+    </section>
+
+    <section id="contact-us" class="animate-on-scroll">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-description">
+        We are happy to hear from you for any inquiries or suggestions. You can use the form below or contact us through other methods.
+      </p>
+      <div class="contact-content">
+        <div class="contact-method animate-on-scroll">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>ieee.et50@gmail.com</p>
+        </div>
+        <div class="contact-method animate-on-scroll">
+          <i class="fas fa-phone-alt"></i>
+          <h3>Phone</h3>
+          <p> +20 120 300 6152 </p>
+        </div>
+        <div class="contact-method animate-on-scroll">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Location</h3>
+          <p>New Cairo Academy, Fifth Settlement</p>
+        </div>
+
+        <div class="contact-form animate-on-scroll">
+          <h3>Message Us</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required placeholder="example@domain.com">
+            </div>
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Write your message here..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+
+        <div class="map-container animate-on-scroll">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.649939529094!2d31.45890001490215!3d30.04694998188164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14582315b9a4d87b%3A0xf6d6c6d6d6d6d6d6!2sNew%20Cairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1678901234567!5m2!1sen!2seg"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="New Cairo Academy Location">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#board-members">Board Team</a></li>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#career-path-suggester">Career Path</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <ul>
+          <li><i class="fas fa-envelope"></i> ieee.et50@gmail.com</li>
+          <li><i class="fas fa-phone-alt"></i> +20 120 300 6152</li>
+          <li><i class="fas fa-map-marker-alt"></i> New Cairo Academy, Fifth Settlement </li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="https://facebook.com/IEEE.ET5.SB " target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://linkedin.com/company/ieee-et5-student-branch " target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://instagram.com/ieee.et5.sb " target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 IEEE ET5 Student Branch. All rights reserved.
+    </div>
+  </footer>
+
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">×</span>
+      <h3>Success!</h3>
+      <p>Thank you for contacting us. We will get back to you as soon as possible.</p>
+      <button class="cta-button" id="modalCloseButton">Okay</button>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    // Header background change on scroll
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Animate on Scroll functionality
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+    function checkScroll() {
+      animateElements.forEach(el => {
+        const elementPosition = el.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3; // Trigger when 1/3 of element is visible
+
+        if (elementPosition < screenPosition) {
+          el.classList.add('animated');
+        }
+      });
+    }
+
+    // Initial check on load and subsequent checks on scroll
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('load', checkScroll);
+
+    // Smooth Scroll to Anchors for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+
+        // Only proceed with smooth scroll if the href is not just '#'
+        // and actually points to an ID section.
+        if (targetId && targetId !== '#') {
+          e.preventDefault(); // Prevent default only if it's a valid scroll target
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70, // Offset by header height
+              behavior: 'smooth'
+            });
+            // Close mobile nav menu if open after clicking a link
+            if (navMenu.classList.contains('active')) {
+              navMenu.classList.remove('active');
+            }
+          }
+        } else if (targetId === '#') {
+          // If href is just '#', prevent default to stop page from jumping to top
+          e.preventDefault();
+          // Optionally, add specific logic for these placeholder links if needed in the future
+        }
+        // If href is not '#' and doesn't start with '#', let default behavior happen
+        // (e.g., external links, or links to other pages)
+      });
+    });
+
+    // Floating CTA Button Animation (pulse effect)
+    const ctaButton = document.querySelector('.cta-button.pulse');
+    if (ctaButton) {
+      // Toggle pulse class every 2 seconds for animation
+      setInterval(() => {
+        ctaButton.classList.toggle('pulse');
+      }, 2000);
+    }
+
+    // Contact Form Submission and Custom Modal
+    const contactForm = document.getElementById('contactForm');
+    const successModal = document.getElementById('successModal');
+    const closeButton = document.querySelector('.close-button');
+    const modalCloseButton = document.getElementById('modalCloseButton');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        // Basic form validation
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (name === '' || email === '' || message === '') {
+          // Using a custom modal for errors would be better here too,
+          // but for simplicity, keeping alert for validation for now.
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        // Simple email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        // Simulate form submission (e.g., send data to a server)
+        console.log('Form Submitted:', { name, email, message });
+
+        // Show the custom success modal
+        successModal.style.display = 'flex'; // Use flex to center content
+
+        // Reset the form after successful submission
+        this.reset();
+      });
+    }
+
+    // Close modal when close button (x) is clicked
+    if (closeButton) {
+      closeButton.addEventListener('click', function() {
+        successModal.style.display = 'none';
+      });
+    }
+
+    // Close modal when "Okay" button is clicked
+    if (modalCloseButton) {
+      modalCloseButton.addEventListener('click', function() {
+        successModal.style.display = 'none';
+      });
+    }
+
+    // Close modal when clicking outside of the modal content
+    if (successModal) {
+      window.addEventListener('click', function(event) {
+        if (event.target == successModal) {
+          successModal.style.display = 'none';
+        }
+      });
+    }
+
+    // Gemini API Integration for Event Idea Generation
+    const generateEventIdeaBtn = document.getElementById('generateEventIdeaBtn');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const generatedEventIdeaDiv = document.getElementById('generatedEventIdea');
+
+    if (generateEventIdeaBtn) {
+      generateEventIdeaBtn.addEventListener('click', async function() {
+        // Show loading indicator and clear previous idea
+        loadingIndicator.style.display = 'block';
+        generatedEventIdeaDiv.style.display = 'none';
+        generatedEventIdeaDiv.innerHTML = ''; // Clear previous content
+
+        const prompt = "Suggest a creative and relevant event idea for an IEEE student branch, focusing on technology, engineering, or professional development. Provide an attractive title and a brief description (2-3 sentences) in English.";
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // Canvas will automatically provide the API key at runtime
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const result = await response.json();
+
+          if (result.candidates && result.candidates.length > 0 &&
+              result.candidates[0].content && result.candidates[0].content.parts &&
+              result.candidates[0].content.parts.length > 0) {
+            const text = result.candidates[0].content.parts[0].text;
+            generatedEventIdeaDiv.innerHTML = `<h3>Suggested Event Idea:</h3><p>${text}</p>`;
+            generatedEventIdeaDiv.style.display = 'block';
+          } else {
+            generatedEventIdeaDiv.innerHTML = `<p style="color: var(--error);">Sorry, I couldn't generate an event idea. Please try again.</p>`;
+            generatedEventIdeaDiv.style.display = 'block';
+            console.error('Gemini API response structure unexpected:', result);
+          }
+        } catch (error) {
+          generatedEventIdeaDiv.innerHTML = `<p style="color: var(--error);">An error occurred while generating the idea: ${error.message}</p>`;
+          generatedEventIdeaDiv.style.display = 'block';
+          console.error('Error calling Gemini API:', error);
+        } finally {
+          loadingIndicator.style.display = 'none'; // Hide loading indicator
+        }
+      });
+    }
+
+    // Gemini API Integration for Career Path Suggester
+    const suggestCareerPathBtn = document.getElementById('suggestCareerPathBtn');
+    const interestsInput = document.getElementById('interestsInput');
+    const careerLoadingIndicator = document.getElementById('careerLoadingIndicator');
+    const generatedCareerPathDiv = document.getElementById('generatedCareerPath');
+
+    if (suggestCareerPathBtn) {
+      suggestCareerPathBtn.addEventListener('click', async function() {
+        const interests = interestsInput.value.trim();
+        if (!interests) {
+          alert('Please enter your interests to suggest a career path.');
+          return;
+        }
+
+        careerLoadingIndicator.style.display = 'block';
+        generatedCareerPathDiv.style.display = 'none'; // Hide display div during processing
+        generatedCareerPathDiv.innerHTML = ''; // Clear previous content
+
+        const prompt = `Based on the following interests: "${interests}", suggest 3-5 career paths in engineering and technology fields, and mention relevant IEEE areas for each path. Provide a title for each path and a brief description (2-3 sentences) in English.`;
+        let chatHistory = [];
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // Canvas will automatically provide the API key at runtime
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const result = await response.json();
+          let generatedText = '';
+
+          if (result.candidates && result.candidates.length > 0 &&
+              result.candidates[0].content && result.candidates[0].content.parts &&
+              result.candidates[0].content.parts.length > 0) {
+            generatedText = result.candidates[0].content.parts[0].text;
+            // Display the generated text for the user to see
+            generatedCareerPathDiv.innerHTML = `<h3>Suggested Career Paths:</h3><p>${generatedText}</p>`;
+            generatedCareerPathDiv.style.display = 'block';
+
+            // Removed the backend email sending simulation and related messages
+            // as per the user's request to remove email functionality.
+
+          } else {
+            generatedCareerPathDiv.innerHTML = `<p style="color: var(--error);">Sorry, I couldn't generate career path suggestions. Please try again.</p>`;
+            generatedCareerPathDiv.style.display = 'block';
+            console.error('Gemini API response structure unexpected:', result);
+          }
+        } catch (error) {
+          generatedCareerPathDiv.innerHTML = `<p style="color: var(--error);">An error occurred while generating suggestions: ${error.message}</p>`;
+          generatedCareerPathDiv.style.display = 'block';
+          console.error('Error calling Gemini API for career path:', error);
+        } finally {
+          careerLoadingIndicator.style.display = 'none'; // Hide loading indicator
+        }
+      });
+    }
+  </script>
+</body>
+</html>
